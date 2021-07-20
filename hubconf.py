@@ -8,6 +8,6 @@ def squeezenet(pretrained=False, **kwargs):
 	model = _squeezenet_model(pretrained=pretrained, **kwargs)
 	
 	checkpoint = 'https://download.pytorch.org/models/squeezenet1_0-b66bff10.pth'
-    model.load_state_dict(torch.hub.load_state_dict_from_url(checkpoint, progress=False))
+	model.load_state_dict(torch.hub.load_state_dict_from_url(checkpoint, progress=False))
 	return model
 	
