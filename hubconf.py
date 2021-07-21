@@ -1,6 +1,6 @@
 #Hub config file
-dependencies = ['torch']
 
+import torch
 from torchvision.models.squeezenet import squeezenet1_0, squeezenet1_1
 
 def squeezenet(pretrained_t=False):
