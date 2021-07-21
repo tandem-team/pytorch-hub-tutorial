@@ -38,7 +38,7 @@ def image_to_tensor(url_t):
 def squeezenet_tensor_out_util(url_list):
 	#url list in tensor list out function
 	if(len(url_list)<1):
-		return "Invalid URL list"
+		return 0
 	
 	out_tensor = image_to_tensor(url_list[0])
 	
