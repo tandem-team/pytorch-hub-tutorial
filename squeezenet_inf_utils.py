@@ -21,7 +21,7 @@ def image_to_tensor(url_t):
 	img_t = transform(im)
 	return torch.unsqueeze(img_t, 0)
 
-def squeezenet_utility(url_list):
+def squeezenet_tensor_out_util(url_list):
 
 	
 	out_tensor = image_to_tensor(url[0])
