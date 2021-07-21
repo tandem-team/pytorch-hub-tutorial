@@ -31,7 +31,7 @@ def image_to_tensor(url_t):
 	)])
 
 	#Open image, transform it and add dimension via `unsqueeze(0)`
-	im = Image.open(requests.get(url_t[1], stream=True).raw)
+	im = Image.open(requests.get(url_t, stream=True).raw)
 	img_t = transform(im)
 	return torch.unsqueeze(img_t, 0)
 
