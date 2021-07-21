@@ -2,6 +2,7 @@
 
 import torch
 from torchvision.models.squeezenet import squeezenet1_0, squeezenet1_1
+from squeezenet_inf_utils import image_to_tensor, squeezenet_tensor_out_util
 
 def squeezenet(pretrained_t=False):
 	"The statements we write here is displayed when \
