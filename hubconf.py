@@ -36,9 +36,15 @@ def image_to_tensor(url_t):
 	return torch.unsqueeze(img_t, 0)
 
 def squeezenet_tensor_out_util(url_list):
-
+	#url list in tensor list out function
+	if(len(url_list)<1):
+	return "Invalid URL list"
 	
-	out_tensor = image_to_tensor(url[0])
+	out_tensor = image_to_tensor(url_list[0])
+	
+	if(len(url_list)==1):
+		return out_tensor
+		
 	for url in url_list[1:]:
 		torch.cat((out_tensor, image_to_tensor(url)), 0)
 		
