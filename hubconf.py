@@ -4,7 +4,9 @@ import requests
 from torchvision import transforms
 from torchvision.models.squeezenet import squeezenet1_0
 
+
 #Entry-point function definition which serves the model definition(and weights, if specified)
+
 def squeezenet(pretrained_t=False):
 	"The statements we write here is displayed when \
 	we call hub.help() on this repository"
