@@ -1,6 +1,7 @@
 #Hub config file
 import torch
 import requests
+from PIL import Image
 from torchvision import transforms
 from torchvision.models.squeezenet import squeezenet1_0
 
