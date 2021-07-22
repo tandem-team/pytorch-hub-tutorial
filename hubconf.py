@@ -1,8 +1,10 @@
 #Hub config file
-
 import torch
-from torchvision.models.squeezenet import squeezenet1_0, squeezenet1_1
+import requests
+from torchvision import transforms
+from torchvision.models.squeezenet import squeezenet1_0
 
+#Entry-point function definition which serves the model definition(and weights, if specified)
 def squeezenet(pretrained_t=False):
 	"The statements we write here is displayed when \
 	we call hub.help() on this repository"
@@ -12,15 +14,9 @@ def squeezenet(pretrained_t=False):
 	model.load_state_dict(torch.hub.load_state_dict_from_url(checkpoint, progress=False))
 	return model
 	
-#Import packages
-import torch
-import torchvision
-from PIL import Image
-import requests
-
+#Utility function returns tensor from the given url parameter
 def image_to_tensor(url_t):
 	#Basic transformations for Imagenet Object detection
-	from torchvision import transforms
 	transform = transforms.Compose([            #[1]
 	transforms.Resize(256),                    #[2]
 	transforms.CenterCrop(224),                #[3]
@@ -30,21 +26,23 @@ def image_to_tensor(url_t):
 	std=[0.229, 0.224, 0.225]                  #[7]
 	)])
 
-	#Open image, transform it and add dimension via `unsqueeze(0)`
+	#Open image, transform it and add dimension via `unsqueeze(0)` and return
 	im = Image.open(requests.get(url_t, stream=True).raw)
 	img_t = transform(im)
 	return torch.unsqueeze(img_t, 0)
 
+
 def squeezenet_tensor_out_util(url_list):
-	#url list in tensor list out function
+	#Input -> url list
+	#Ouput -> tensor list of images
 	if(len(url_list)<1):
 		return 0
 	
 	out_tensor = image_to_tensor(url_list[0])
-	
+	#If only 1 url then return
 	if(len(url_list)==1):
 		return out_tensor
-		
+	#If more than 1, then append and form batch of images	
 	for url in url_list[1:]:
 		torch.cat((out_tensor, image_to_tensor(url)), 0)
 		
