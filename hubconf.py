@@ -47,6 +47,6 @@ def squeezenet_tensor_out_util(url_list):
 		return out_tensor
 	#If more than 1, then append and form batch of images	
 	for url in url_list[1:]:
-		torch.cat((out_tensor, image_to_tensor(url)), 0)
+		out_tensor = torch.cat((out_tensor, image_to_tensor(url)), 0)
 		
 	return out_tensor
