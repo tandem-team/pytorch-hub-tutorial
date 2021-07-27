@@ -50,3 +50,19 @@ def squeezenet_tensor_out_util(url_list):
 		out_tensor = torch.cat((out_tensor, image_to_tensor(url)), 0)
 		
 	return out_tensor
+
+def squeezenet_output_utils(url_list, output_tensor):
+	!wget -q https://raw.githubusercontent.com/Lasagne/Recipes/master/examples/resnet50/imagenet_classes.txt
+	with open('imagenet_classes.txt') as f:
+		classes = [line.strip() for line in f.readlines()]
+
+	#Sort the output for each image
+	_, indices = torch.sort(output_tensor, descending=True)
+	
+	#Plot the images with the output names as titles
+	for i in range(len(url_list)):
+	fig, ax = plt.subplots(1, figsize=(7,7))
+	im = Image.open(requests.get(url_list[i], stream=True).raw)
+	ax.set_title( classes[indices[i][0]] )
+	ax.imshow(im)
+	plt.show()
