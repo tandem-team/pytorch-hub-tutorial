@@ -52,7 +52,6 @@ def squeezenet_tensor_out_util(url_list):
 	return out_tensor
 
 def squeezenet_output_utils(url_list, output_tensor):
-	!wget -q https://raw.githubusercontent.com/Lasagne/Recipes/master/examples/resnet50/imagenet_classes.txt
 	with open('imagenet_classes.txt') as f:
 		classes = [line.strip() for line in f.readlines()]
 
