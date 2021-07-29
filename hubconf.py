@@ -53,7 +53,7 @@ def squeezenet_tensor_out_util(url_list):
 
 def squeezenet_output_utils(url_list, output_tensor):
 	with open('imagenet_classes.txt') as f:
-	classes = [line.strip() for line in f.readlines()]
+		classes = [line.strip() for line in f.readlines()]
 	
 	#Sort the output for each image
 	_, indices = torch.sort(output_tensor, descending=True)
