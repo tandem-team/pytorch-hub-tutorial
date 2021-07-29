@@ -52,9 +52,11 @@ def squeezenet_tensor_out_util(url_list):
 	return out_tensor
 
 def squeezenet_output_utils(url_list, output_tensor):
-	with open('imagenet_classes.txt') as f:
-		classes = [line.strip() for line in f.readlines()]
-	
+	classes = []
+	classes_req = requests.get('https://raw.githubusercontent.com/Lasagne/Recipes/master/examples/resnet50/imagenet_classes.txt').text
+	for i in classes_req.split(','):
+		classes.append(i)
+  
 	#Sort the output for each image
 	_, indices = torch.sort(output_tensor, descending=True)
 	
