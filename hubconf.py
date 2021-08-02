@@ -64,8 +64,8 @@ def squeezenet_output_utils(url_list, output_tensor):
 	#Plot the images with the output names as titles
 	fig, ax = plt.subplots(2,2, figsize=(7,7))
 	for image_idx in range(len(url_list)):
-		im = Image.open(requests.get(url_list[i], stream=True).raw)
-		ax[i_index][j_index].set_title( classes[indices[i][0]] )
+		im = Image.open(requests.get(url_list[image_idx], stream=True).raw)
+		ax[i_index][j_index].set_title( classes[indices[image_idx][0]] )
 		ax[i_index][j_index].imshow(im)
 
 	if image_idx == 0:
