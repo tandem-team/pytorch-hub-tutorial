@@ -76,5 +76,5 @@ def squeezenet_output_utils(url_list, output_tensor):
 			i_index, j_index = (1, 0)
 		if image_idx == 2:
 			i_index, j_index = (1, 1)
-	plt.subplots_adjust(wspace=0, hspace=0)	
+	plt.subplots_adjust(wspace=0, hspace=0.5)	
 	plt.show()
