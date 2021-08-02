@@ -62,18 +62,19 @@ def squeezenet_output_utils(url_list, output_tensor):
 	_, indices = torch.sort(output_tensor, descending=True)
 	
 	#Plot the images with the output names as titles
-	fig, ax = plt.subplots(2,2, figsize=(7,7))
+	fig, ax = plt.subplots(2,2, figsize=(15,10))
 	i_index, j_index = (0, 0)
 	for image_idx in range(len(url_list)):
 		im = Image.open(requests.get(url_list[image_idx], stream=True).raw)
 		ax[i_index][j_index].set_title( classes[indices[image_idx][0]] )
 		ax[i_index][j_index].imshow(im)
+		ax[i_index][j_index].axis('off')
 
-	if image_idx == 0:
-		i_index, j_index = (0, 1)
-	if image_idx == 1:
-		i_index, j_index = (1, 0)
-	if image_idx == 2:
-		i_index, j_index = (1, 1)
+		if image_idx == 0:
+			i_index, j_index = (0, 1)
+		if image_idx == 1:
+			i_index, j_index = (1, 0)
+		if image_idx == 2:
+			i_index, j_index = (1, 1)
 	plt.subplots_adjust(wspace=0, hspace=0)	
 	plt.show()
